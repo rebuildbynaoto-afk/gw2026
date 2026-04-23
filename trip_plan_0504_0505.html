@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GW 2026 — なお・みお・けーま・祐樹</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #FBF7EE;
+    --dark: #1E1A14;
+    --brown: #5C4A2A;
+    --amber: #D4891A;
+    --amber-light: #F5D48A;
+    --amber-pale: #FEF6DF;
+    --teal: #2A7A6B;
+    --teal-light: #A8D5CC;
+    --teal-pale: #E6F5F2;
+    --pink: #C4546A;
+    --pink-light: #F2B8C3;
+    --pink-pale: #FEF0F3;
+    --gray: #8A8178;
+    --border: rgba(92,74,42,0.15);
+  }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'Zen Maru Gothic', sans-serif;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .hero {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(212,137,26,0.06) 40px,
+      rgba(212,137,26,0.06) 41px
+    );
+  }
+  .hero-tag {
+    display: inline-block;
+    background: var(--amber);
+    color: var(--dark);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    padding: 5px 14px;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+  .hero h1 span { color: var(--amber); }
+  .hero-sub {
+    font-size: 14px;
+    color: rgba(251,247,238,0.6);
+    letter-spacing: 0.08em;
+    margin-bottom: 2.5rem;
+  }
+  .hero-members {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .member-chip {
+    background: rgba(251,247,238,0.1);
+    border: 1px solid rgba(251,247,238,0.2);
+    color: var(--cream);
+    font-size: 13px;
+    padding: 6px 16px;
+    border-radius: 100px;
+  }
+
+  /* LAYOUT */
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  /* DAY HEADER */
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+  }
+  .day-header:first-child { margin-top: 0; }
+  .day-badge {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+  }
+  .day-badge.amber { background: var(--amber); color: var(--dark); }
+  .day-badge.teal { background: var(--teal); color: #fff; }
+  .day-badge .num { font-family: 'Shippori Mincho', serif; font-size: 22px; line-height: 1; }
+  .day-badge .mon { font-size: 10px; letter-spacing: 0.1em; opacity: 0.8; margin-top: 2px; }
+  .day-title { font-family: 'Shippori Mincho', serif; font-size: 1.5rem; font-weight: 700; }
+  .day-title small { display: block; font-family: 'Zen Maru Gothic', sans-serif; font-size: 12px; font-weight: 400; color: var(--gray); margin-top: 3px; }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    bottom: 8px;
+    width: 1.5px;
+    background: var(--border);
+  }
+
+  .event {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  .event::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 12px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid;
+    background: var(--cream);
+  }
+  .event.amber::before { border-color: var(--amber); }
+  .event.teal::before { border-color: var(--teal); }
+  .event.pink::before { border-color: var(--pink); }
+
+  .event-card {
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    border: 1px solid;
+  }
+  .event.amber .event-card { background: var(--amber-pale); border-color: rgba(212,137,26,0.2); }
+  .event.teal .event-card { background: var(--teal-pale); border-color: rgba(42,122,107,0.2); }
+  .event.pink .event-card { background: var(--pink-pale); border-color: rgba(196,84,106,0.2); }
+
+  .event-time {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .event.amber .event-time { color: var(--amber); }
+  .event.teal .event-time { color: var(--teal); }
+  .event.pink .event-time { color: var(--pink); }
+
+  .event-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .event-desc {
+    font-size: 13px;
+    color: var(--brown);
+    line-height: 1.7;
+  }
+  .event-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+  .tag.amber { background: rgba(212,137,26,0.15); color: #8a5a0d; }
+  .tag.teal { background: rgba(42,122,107,0.15); color: #1a5044; }
+  .tag.pink { background: rgba(196,84,106,0.15); color: #8a2a3c; }
+
+  .walk-connector {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: -0.5rem 0 1rem;
+    padding-left: 2px;
+  }
+  .walk-connector span {
+    font-size: 12px;
+    color: var(--gray);
+  }
+  .walk-connector::before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 20px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+
+  /* NIGHT BLOCK */
+  .night-block {
+    background: var(--dark);
+    color: var(--cream);
+    border-radius: 16px;
+    padding: 1.75rem;
+    margin-top: 2rem;
+  }
+  .night-block h3 {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    color: var(--amber-light);
+  }
+  .night-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .night-item {
+    background: rgba(251,247,238,0.1);
+    border: 1px solid rgba(251,247,238,0.15);
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    color: var(--cream);
+  }
+
+  /* DIVIDER */
+  .day-divider {
+    border: none;
+    border-top: 1.5px dashed var(--border);
+    margin: 3rem 0;
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 12px;
+    color: var(--gray);
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-tag">GW 2026 / MAY 4–5</div>
+  <h1>大宮・戸田・西川口<br><span>2日間の旅</span></h1>
+  <p class="hero-sub">2026年5月4日（月・振替）〜 5月5日（火・祝）</p>
+  <div class="hero-members">
+    <div class="member-chip">なお</div>
+    <div class="member-chip">みお</div>
+    <div class="member-chip">けーま</div>
+    <div class="member-chip">祐樹</div>
+  </div>
+  <div style="margin-top: 2rem; background: rgba(251,247,238,0.08); border: 1px solid rgba(251,247,238,0.15); border-radius: 12px; padding: 1.25rem 1.5rem; max-width: 440px; margin-left: auto; margin-right: auto;">
+    <p style="font-size: 15px; line-height: 1.8; color: rgba(251,247,238,0.9);">これ俺の妄想プランです笑<br>いいね・ここ変えたい・こうしたい、<br>なんでも意見ちょうだーい！🙌</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- DAY 1 -->
+  <div class="day-header">
+    <div class="day-badge amber">
+      <div class="num">5/4</div>
+      <div class="mon">SUN</div>
+    </div>
+    <div class="day-title">
+      大宮から戸田へ
+      <small>大宮公園・カラオケ・デリデグー</small>
+    </div>
+  </div>
+
+  <div class="timeline">
+
+    <div class="event amber">
+      <div class="event-card">
+        <div class="event-time">10:00</div>
+        <div class="event-title">🚉 大宮駅 集合</div>
+        <div class="event-desc">大宮駅で4人集合。缶ビール片手に大宮公園へ徒歩でGO！</div>
+        <div class="event-tags">
+          <span class="tag amber">徒歩20分</span>
+          <span class="tag amber">缶ビール🍺</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event amber">
+      <div class="event-card">
+        <div class="event-time">10:20〜12:00</div>
+        <div class="event-title">🌳 大宮公園 散策</div>
+        <div class="event-desc">池のカフェ、無料動物園、勾玉づくり体験、屋台めぐり。でっかい公園をのんびり満喫。</div>
+        <div class="event-tags">
+          <span class="tag amber">池のカフェ</span>
+          <span class="tag amber">動物園（無料）</span>
+          <span class="tag amber">勾玉づくり</span>
+          <span class="tag amber">屋台</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event amber">
+      <div class="event-card">
+        <div class="event-time">12:30〜15:30</div>
+        <div class="event-title">🎤 カラオケベスト10</div>
+        <div class="event-desc">大宮駅近くの格安カラオケ。3時間がっつり歌う。</div>
+        <div class="event-tags">
+          <span class="tag amber">3時間</span>
+          <span class="tag amber">格安</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="walk-connector"><span>電車で戸田公園へ移動</span></div>
+
+    <div class="event pink">
+      <div class="event-card">
+        <div class="event-time">17:30〜</div>
+        <div class="event-title">🍺 デリデグー</div>
+        <div class="event-desc">
+          戸田公園のクラフトビールバーへ。2つの大事な用件：<br><br>
+          ① 先日の誕生日企画、ありがとうございました のご挨拶<br>
+          ② 8/9 祐樹誕生日企画の相談。8/8（土）に貸し切りイベントをやって、日付変わった瞬間におめでとう！をやりたい
+        </div>
+        <div class="event-tags">
+          <span class="tag pink">お礼</span>
+          <span class="tag pink">8/8貸し切り相談</span>
+          <span class="tag pink">クラフトビール🍺</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="night-block">
+    <h3>🌙 夜 — うちに帰ってから</h3>
+    <p style="font-size:13px; color:rgba(251,247,238,0.7); line-height:1.7;">デリデグーでいい感じに飲んだあとは、みんなでうちに帰って自由時間。</p>
+    <div class="night-items">
+      <div class="night-item">🎮 スマブラ</div>
+      <div class="night-item">🎵 作曲セッション</div>
+      <div class="night-item">🃏 ボドゲ</div>
+      <div class="night-item">💤 宿泊</div>
+    </div>
+    <div style="margin-top:16px; padding-top:14px; border-top:1px solid rgba(251,247,238,0.15);">
+      <p style="font-size:11px; color:rgba(251,247,238,0.45); letter-spacing:0.08em; margin-bottom:10px;">作曲セッションってどんな感じ？👂</p>
+      <a href="https://stand.fm/episodes/69ea48d70cd6138239eefc17" target="_blank" style="display:inline-flex; align-items:center; gap:8px; background:rgba(251,247,238,0.1); border:1px solid rgba(251,247,238,0.2); color:var(--cream); font-size:13px; text-decoration:none; padding:10px 16px; border-radius:8px; transition:background 0.2s;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+        なおの作曲風景を聴く（stand.fm）
+      </a>
+    </div>
+  </div>
+
+  <hr class="day-divider">
+
+  <!-- DAY 2 -->
+  <div class="day-header">
+    <div class="day-badge teal">
+      <div class="num">5/5</div>
+      <div class="mon">MON</div>
+    </div>
+    <div class="day-title">
+      西川口 醸造体験の日
+      <small>こどもの日・グローブリュワリー</small>
+    </div>
+  </div>
+
+  <div class="timeline">
+
+    <div class="event teal">
+      <div class="event-card">
+        <div class="event-time">12:00〜</div>
+        <div class="event-title">🍻 グローブリュワリー（西川口）</div>
+        <div class="event-desc">
+          4人で西川口まで歩いて移動。醸造体験（無料）＆おいしいカレーイベントに参加！
+        </div>
+        <div class="event-tags">
+          <span class="tag teal">醸造体験（無料）</span>
+          <span class="tag teal">カレーイベント🍛</span>
+          <span class="tag teal">徒歩</span>
+        </div>
+        <div style="margin-top:12px;">
+          <a href="https://www.instagram.com/grow_brew_house" target="_blank" style="display:inline-flex; align-items:center; gap:7px; background:rgba(42,122,107,0.12); border:1px solid rgba(42,122,107,0.25); color:#1a5044; font-size:12px; text-decoration:none; padding:7px 13px; border-radius:7px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            @grow_brew_house のInstagramを見る
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="event teal">
+      <div class="event-card">
+        <div class="event-time">早めに</div>
+        <div class="event-title">👋 解散</div>
+        <div class="event-desc">いい時間に解散。また近いうちに。</div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  なお・みお・けーま・祐樹 ／ GW 2026 &nbsp;🍺
+</footer>
+
+</body>
+</html>
